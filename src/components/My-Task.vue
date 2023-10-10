@@ -16,6 +16,8 @@
         emit('submit');
         inputValue.value = '';
     }
+
+    
 </script>
 
 <template>
@@ -40,11 +42,12 @@
 
 <style lang="scss">
     .task {
-        padding: 20px 10px;
-        width: 550px;
-        height: 200px;
-        background-color: RGBA(247, 249, 249, .8);
+        padding: 10px;
+        width: 100%;
+        background-color: RGBA(59, 46, 79, .8);
+        color: #fff;
         border-radius: 12px;
+        
         &__title {
             margin-bottom: 15px;
         }
@@ -54,8 +57,9 @@
             padding: 10px 15px;
             border: none;
             border-radius: 10px;
-            background-color: RGBA(168, 179, 196, .7);
+            background-color: #A2D5F2;
             margin-bottom: 15px;
+            cursor: pointer;
         }
         &__btn {
             width: 100%;

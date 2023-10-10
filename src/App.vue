@@ -4,17 +4,17 @@
     import MyTaskManager from '@/components/My-TaskManager.vue';
 
     const inputValue = ref('');
+    const editInputValue = ref('');
     const tasks = ref([]); 
 
 
     const createTask = () => {
-        console.log(inputValue.value);
         tasks.value.push({
             id: Date.now(),
             title: inputValue.value,
-            color: '#E63946',
             completed: false,
             isEditing: false,
+            decoration: {textDecoration: 'none'},
         });
     }
 
@@ -30,11 +30,14 @@
         tasks.value[index].isEditing = false;
     }
 
+    const saveTask = (index) => {
+        tasks.value[index].title = editInputValue.value;
+        tasks.value[index].isEditing = false;  
+    }
+
     const updateCheckbox = (index) => {
-        console.log(tasks.value[index].completed)
-        if(!tasks.value[index].completed) tasks.value[index].color = '#4F9153';
-        else tasks.value[index].color = '#E63946';
-        
+        if(!tasks.value[index].completed) tasks.value[index].decoration = {textDecoration: 'line-through'};
+        else tasks.value[index].decoration = {textDecoration: 'none'}; 
     }
 
 </script>
@@ -51,11 +54,13 @@
 
                 <MyTaskManager
                     :tasks="tasks"
-                    :color="tasks.color"
                     @remove="removeTask"
                     @edit="editTask"
                     @cancel="cancelTask"
+                    @save="saveTask"
                     @updateCheckbox="updateCheckbox"
+                    v-model="editInputValue"
+                    
                 />
             
             </div>
@@ -66,6 +71,8 @@
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+    
     .title {
         font-family: 'Russo One', sans-serif;
         font-size: 26px;
@@ -79,7 +86,11 @@
         background: url(/BG.jpg) center/cover no-repeat;
         &__inner {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            width: 1000px;
+            margin: 0 auto;
+            gap: 20px 0;
         }
     }
 </style>
