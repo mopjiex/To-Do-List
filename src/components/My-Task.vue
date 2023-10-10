@@ -2,6 +2,7 @@
     import { ref } from 'vue';
 
     const inputValue = ref('');
+    
     const props = defineProps({
         inputPlaceholder: String,
     });

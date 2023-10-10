@@ -1,12 +1,12 @@
 <script setup>
-    import { reactive, ref } from 'vue';
+    import { computed, ref } from 'vue';
     import MyTask from '@/components/My-Task.vue';
     import MyTaskManager from '@/components/My-TaskManager.vue';
 
     const inputValue = ref('');
     const editInputValue = ref('');
     const tasks = ref([]); 
-
+    const selectedOption = ref('Все');
 
     const createTask = () => {
         tasks.value.push({
@@ -40,6 +40,18 @@
         else tasks.value[index].decoration = {textDecoration: 'none'}; 
     }
 
+    const filterTask = computed(() => {
+            if(selectedOption.value === 'Все') {
+                return tasks.value;
+            }
+            else if(selectedOption.value === 'Завершенные') {
+                return tasks.value.filter(item => item.completed)
+            }
+            else if(selectedOption.value === 'Незавершенные') {
+                return tasks.value.filter(item => !item.completed)
+            }
+        })
+
 </script>
 
 <template>
@@ -52,15 +64,21 @@
                     @submit="createTask"   
                 />
 
+                <div class="filter">
+                    <select  class="select" v-model="selectedOption">
+                        <option class="select__option" value="Все">Все</option>
+                        <option class="select__option" value="Завершенные">Завершенные</option>
+                        <option class="select__option" value="Незавершенные">Незавершенные</option>
+                    </select>
+                </div>
                 <MyTaskManager
-                    :tasks="tasks"
+                    :tasks="filterTask"
                     @remove="removeTask"
                     @edit="editTask"
                     @cancel="cancelTask"
                     @save="saveTask"
                     @updateCheckbox="updateCheckbox"
-                    v-model="editInputValue"
-                    
+                    v-model="editInputValue" 
                 />
             
             </div>
@@ -92,5 +110,13 @@
             margin: 0 auto;
             gap: 20px 0;
         }
+    }
+
+    .filter {
+        margin-left: auto;
+    }
+    .select {
+        width: 180px;
+        padding: 5px 10px;
     }
 </style>

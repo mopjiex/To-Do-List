@@ -1,9 +1,7 @@
 <script setup>
     import myBtn from '@/components/My-Button.vue'
     import { ref } from 'vue';
-
-    const checked = ref(false);
-
+    
     const props = defineProps({
         tasks: Array,
     })
