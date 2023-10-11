@@ -40,28 +40,35 @@
     <div class="task-manager">
         <div class="task-manager__infinished">
             <h2 class="task-manager__title title">Задачи</h2>
-            <div class="task-manager__card" 
+            <div class="card" 
                 v-for="(task, index) in tasks" 
                 :key="task.id"
             >
-                <div class="task-manager__card-left">
+                <div class="card__left">
 
                     <input 
                         type="checkbox" 
-                        class="task-manager__card-checkbox" 
+                        class="card__left-checkbox" 
                         v-model="task.completed"
                         @input="updateCheckbox(index)"
                     >
                     
-                    <div class="task-manager__card-desc">
-                        <p class="task-manager__card-desc-id"> {{ index + 1 }} </p>
+                    <div class="card__left-desc">
+
+                        <p class="card__left-desc__id"> № {{ index + 1 }} </p>
                         <h3 
-                            class="task-manager__card-desc-title"
+                            class="card__left-desc__title"
                             :style="task.decoration"
-                        >{{ task.title }}</h3>
+                        >   {{ task.title }}
+                        </h3>
+
+                        <p class="card__left-desc__time">
+                            <img src="/calendar.png" alt="" class="card__left-desc__time-img">
+                            <span class="card__left-desc__time-text"> {{ task.date }}</span>
+                        </p>
                     </div>
                 </div>
-                <div class="task-manager__card-right" v-if="!task.isEditing">
+                <div class="card__right" v-if="!task.isEditing">
                     <myBtn
                         imgName="/edit.png" 
                         myClass="edit"
@@ -75,9 +82,9 @@
                     
                 </div>
 
-                <div class="task-manager__card-right" v-else>
+                <div class="card__right" v-else>
                     <input 
-                        class="task-manager__card-right-input" 
+                        class="card__right-input" 
                         type="text"
                         v-model="editInputValue"
                         @input="updateEditInput"
@@ -114,7 +121,6 @@
     .task-manager {
         padding: 20px 10px;
         width: 100%;
-        background-color: RGBA(59, 46, 79, .8);
         color: #fff;
         border-radius: 12px;
         display: flex;
@@ -127,45 +133,65 @@
             padding-bottom: 10px;
             margin-bottom: 15px;
         }
-        &__card {
-            background-color: #3E4C59;
-            color: #ddd;
-            padding: 15px 10px;
-            border-radius: 10px;
+    }
+  
+    .card {
+        color: #ddd;
+        background-color: #44446a;
+        padding: 15px;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        &__left {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            &-left {
-                display: flex;
-                align-items: center;
-                gap: 0 20px;
-            }
-            &-right {
-                display: flex;
-                align-items: center;
-                gap: 0 20px;
-                &-input {
-                    padding: 10px 15px;
-                    border-radius: 5px;
-                    font-size: 18px;
-                }
+            gap: 0 20px;
+            &-checkbox {
+                width: 25px;
+                height: 25px;
             }
             &-desc {
                 display: flex;
-                align-items: center;
+                flex-direction: column;
                 gap: 0 20px;
-                &-id {
+                max-width: 150px;  
+                width: 100%;
+                &__id {
                     font-size: 20px;
                 }
-                &-title {
-                    font-size: 20px;
-                    text-align: center;   
+                &__title {
+                    font-size: 18px;
+                    word-wrap: break-word;
+                    line-height: 110%;
+                    margin-bottom: 10px;
+                }
+
+                &__time {
+                    display: flex;
+                    align-items: center;
+                    gap: 0 10px;
+                    &-img {
+                        width: 20px;
+                        height: 20px;
+                    }
                 }
             }
         }
+        &__right {
+            display: flex;
+            align-items: center;
+            gap: 0 20px;
+            &-input {
+                padding: 5px 10px;
+                border-radius: 25px;
+                font-size: 16px;
+                width: 200px; 
+            }
+        }
     }
-  
+
     .delete {
         background-color: #F08080;
     }

@@ -1,8 +1,10 @@
 <script setup>
     import { computed, ref } from 'vue';
     import MyTask from '@/components/My-Task.vue';
+    import MyFilter from '@/components/My-Filter.vue';
     import MyTaskManager from '@/components/My-TaskManager.vue';
 
+    const date = new Date();
     const inputValue = ref('');
     const editInputValue = ref('');
     const tasks = ref([]); 
@@ -15,6 +17,7 @@
             completed: false,
             isEditing: false,
             decoration: {textDecoration: 'none'},
+            date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`
         });
     }
 
@@ -42,13 +45,13 @@
 
     const filterTask = computed(() => {
             if(selectedOption.value === 'Все') {
-                return tasks.value;
+                return [...tasks.value];
             }
             else if(selectedOption.value === 'Завершенные') {
-                return tasks.value.filter(item => item.completed)
+                return [...tasks.value].filter(item => item.completed)
             }
             else if(selectedOption.value === 'Незавершенные') {
-                return tasks.value.filter(item => !item.completed)
+                return [...tasks.value].filter(item => !item.completed)
             }
         })
 
@@ -64,13 +67,8 @@
                     @submit="createTask"   
                 />
 
-                <div class="filter">
-                    <select  class="select" v-model="selectedOption">
-                        <option class="select__option" value="Все">Все</option>
-                        <option class="select__option" value="Завершенные">Завершенные</option>
-                        <option class="select__option" value="Незавершенные">Незавершенные</option>
-                    </select>
-                </div>
+                <MyFilter v-model="selectedOption"/>
+
                 <MyTaskManager
                     :tasks="filterTask"
                     @remove="removeTask"
@@ -101,14 +99,18 @@
         font-family: 'Raleway', sans-serif;
         padding: 40px 0;
         min-height: 100vh;
-        background: url(/BG.jpg) center/cover no-repeat;
+        background: url(/BG2.jpg) center/cover no-repeat;
         &__inner {
+            background-color: #32315b;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 1000px;
+            width: 600px;
             margin: 0 auto;
             gap: 20px 0;
+            padding: 10px;
+            border-radius: 25px;
+            
         }
     }
 

@@ -23,21 +23,22 @@
 
 <template>
     <div class="task">
-        <h2 class="task__title title">Добавление задачи</h2>  
-            <input 
-                type="text" 
-                class="task__input" 
-                :placeholder="inputPlaceholder"
-                v-model="inputValue"
-                @input="updateInputValue"
+            <div class="task__inner">
+                <input 
+                    type="text" 
+                    class="task__input" 
+                    :placeholder="inputPlaceholder"
+                    v-model="inputValue"
+                    @input="updateInputValue"
                 > 
 
-            <button 
-                class="task__btn"
-                @click="submitTask"
-            >
-                    Добавить
-            </button>
+                <button 
+                    class="task__btn"
+                    @click="submitTask"
+                >
+                    <img src="/plus.png" alt="" class="task__btn-img">
+                </button>
+            </div>
     </div>
 </template>
 
@@ -45,33 +46,50 @@
     .task {
         padding: 10px;
         width: 100%;
-        background-color: RGBA(59, 46, 79, .8);
         color: #fff;
         border-radius: 12px;
         
+        &__inner {
+            background-color: #292850;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 10px;
+            border-radius: 25px;
+        }
+
         &__title {
             margin-bottom: 15px;
         }
         &__input {
             font-size: 20px;
-            width: 100%;
+            width: 70%;
             padding: 10px 15px;
             border: none;
             border-radius: 10px;
-            background-color: #A2D5F2;
-            margin-bottom: 15px;
+            color: #ddd;
+            background-color: transparent;
             cursor: pointer;
+            &::placeholder {
+                color: #ddd;
+            }
         }
+
         &__btn {
-            width: 100%;
-            background-color: #3B3B98;
-            border-radius: 8px;
-            padding: 10px;
-            color: #E2E8F0;
-            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: #3f84bd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all .3s;
+            &-img {
+                width: 20px;
+                height: 20px;
+            }
             &:hover {
-                background-color: #1F4E79;
+                transform: scale(1.1);
             }
         }
     }
