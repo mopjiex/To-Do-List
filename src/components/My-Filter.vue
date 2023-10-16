@@ -17,6 +17,7 @@ import { watch, ref } from 'vue';
 
 <template>
     <div class="filter">
+        <h2 class="filter__title">Фильтрация</h2>
         <select  class="select" v-model="selectedOption">
             <option class="select__option" value="Все">Все</option>
             <option class="select__option" value="Завершенные">Завершенные</option>
@@ -28,6 +29,10 @@ import { watch, ref } from 'vue';
 <style lang="scss">
     .filter {
         margin-left: auto;
+        &__title {
+            margin-bottom: 10px;
+            color: #fff;
+        }
         .select {
             background-color: #44446a;
             border: none;

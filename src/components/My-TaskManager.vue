@@ -54,8 +54,12 @@
                     >
                     
                     <div class="card__left-desc">
-
-                        <p class="card__left-desc__id"> № {{ index + 1 }} </p>
+                        <p class="card__left-priority"
+                        :style="{backgroundColor: task.priorityColor.BG, 
+                                color: task.priorityColor.text}">
+                                    Приоритет - {{ task.priority }}
+                        </p>
+                        <!-- <p class="card__left-desc__id"> № {{ index + 1 }} </p> -->
                         <h3 
                             class="card__left-desc__title"
                             :style="task.decoration"
@@ -151,6 +155,14 @@
             &-checkbox {
                 width: 25px;
                 height: 25px;
+            }
+            &-priority {
+                padding: 5px;
+                width: 200px;
+                text-align: center;
+                margin-bottom: 10px;
+                border-radius: 10px;
+                font-weight: 700;
             }
             &-desc {
                 display: flex;

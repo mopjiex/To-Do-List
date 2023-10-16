@@ -18,7 +18,9 @@
         inputValue.value = '';
     }
 
-    
+    const prioritySelection = (index) => {
+        emit('priority', index);
+    }
 </script>
 
 <template>
@@ -31,6 +33,30 @@
                     v-model="inputValue"
                     @input="updateInputValue"
                 > 
+
+                <div class="task__priority">
+                    <h3 class="task__priority-title">Выберите приоритет</h3>
+                    <div class="task__priority-buttons">
+                        <button 
+                            class="task__priority-btn priority-red"
+                            @click="prioritySelection(1)"
+                        >
+                            
+                        </button>
+                        <button 
+                            class="task__priority-btn priority-yellow"
+                            @click="prioritySelection(2)"
+                        >
+                            
+                        </button>
+                        <button 
+                            class="task__priority-btn priority-green"
+                            @click="prioritySelection(3)"
+                        >
+                            
+                        </button>
+                    </div>
+                </div>
 
                 <button 
                     class="task__btn"
@@ -63,7 +89,7 @@
         }
         &__input {
             font-size: 20px;
-            width: 70%;
+            width: 50%;
             padding: 10px 15px;
             border: none;
             border-radius: 10px;
@@ -72,6 +98,42 @@
             cursor: pointer;
             &::placeholder {
                 color: #ddd;
+            }
+        }
+
+        &__priority {
+            display: flex;
+            align-items: center;
+            gap: 0 20px;
+            &-title {
+                
+            }
+            &-buttons {
+                display: flex;
+                align-items: center;
+                gap: 0 15px;
+            }
+            &-btn {
+                width: 30px;
+                height: 30px;
+                background-color: #fff;
+                border-radius: 10px;
+                transition: all .3s;
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+
+            .priority-red {
+                background-color: #F25F5C;
+            }
+
+            .priority-yellow{
+                background-color: #FFCF7F;
+            }
+
+            .priority-green {
+                background-color: #A8DADC;
             }
         }
 

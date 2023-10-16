@@ -3,13 +3,16 @@
     import MyTask from '@/components/My-Task.vue';
     import MyFilter from '@/components/My-Filter.vue';
     import MyTaskManager from '@/components/My-TaskManager.vue';
-
     const date = new Date();
     const inputValue = ref('');
     const editInputValue = ref('');
     const tasks = ref([]); 
     const selectedOption = ref('Все');
-
+    const clickedButtonNumber = ref('Высокий');
+    const color = ref({
+        BG: '#F25F5C',
+        text: '#fff',
+    });
     const createTask = () => {
         tasks.value.push({
             id: Date.now(),
@@ -17,7 +20,12 @@
             completed: false,
             isEditing: false,
             decoration: {textDecoration: 'none'},
-            date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`
+            date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}`,
+            priority: clickedButtonNumber.value,
+            priorityColor: {
+                BG: color.value.BG,
+                text: color.value.text,
+            },
         });
     }
 
@@ -55,6 +63,22 @@
             }
         })
 
+    const priority = (index) => {
+        if(index === 1) {
+            clickedButtonNumber.value = 'Высокий'
+            color.value.BG = '#F25F5C';
+            color.value.text = '#fff';
+        } else if(index === 2) {
+            clickedButtonNumber.value = 'Средний'
+            color.value.BG = '#FFC857';
+            color.value.text = '#2F3A59';
+        } else {
+            clickedButtonNumber.value = 'Низкий'
+            color.value.BG = '#A8DADC';
+            color.value.text = '#000';
+        }  
+    }
+    
 </script>
 
 <template>
@@ -64,11 +88,12 @@
                 <MyTask
                     inputPlaceholder="Введите задачу"
                     v-model="inputValue"  
-                    @submit="createTask"   
+                    @submit="createTask"  
+                    @priority="priority"
                 />
 
                 <MyFilter v-model="selectedOption"/>
-
+                
                 <MyTaskManager
                     :tasks="filterTask"
                     @remove="removeTask"
@@ -77,6 +102,7 @@
                     @save="saveTask"
                     @updateCheckbox="updateCheckbox"
                     v-model="editInputValue" 
+                    
                 />
             
             </div>
@@ -105,7 +131,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 600px;
+            width: 800px;
             margin: 0 auto;
             gap: 20px 0;
             padding: 10px;
