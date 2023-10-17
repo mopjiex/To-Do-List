@@ -32,6 +32,7 @@
                     :placeholder="inputPlaceholder"
                     v-model="inputValue"
                     @input="updateInputValue"
+                    @keyup.enter="submitTask"
                 > 
 
                 <div class="task__priority">
@@ -105,9 +106,6 @@
             display: flex;
             align-items: center;
             gap: 0 20px;
-            &-title {
-                
-            }
             &-buttons {
                 display: flex;
                 align-items: center;

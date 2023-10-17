@@ -45,13 +45,13 @@
                 :key="task.id"
             >
                 <div class="card__left">
-
                     <input 
                         type="checkbox" 
                         class="card__left-checkbox" 
                         v-model="task.completed"
                         @input="updateCheckbox(index)"
                     >
+        
                     
                     <div class="card__left-desc">
                         <p class="card__left-priority"
@@ -59,7 +59,7 @@
                                 color: task.priorityColor.text}">
                                     Приоритет - {{ task.priority }}
                         </p>
-                        <!-- <p class="card__left-desc__id"> № {{ index + 1 }} </p> -->
+                        
                         <h3 
                             class="card__left-desc__title"
                             :style="task.decoration"
@@ -216,4 +216,10 @@
     .save {
         background-color: #3B5998;
     }
+
+    .label__checkbox {
+  display: none;
+}
+
+
 </style>

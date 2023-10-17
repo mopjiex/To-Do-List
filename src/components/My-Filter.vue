@@ -28,7 +28,7 @@ import { watch, ref } from 'vue';
 
 <style lang="scss">
     .filter {
-        margin-left: auto;
+        
         &__title {
             margin-bottom: 10px;
             color: #fff;
