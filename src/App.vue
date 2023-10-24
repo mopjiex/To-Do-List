@@ -23,7 +23,7 @@
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
         const seconds = String(date.getSeconds()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         return formattedDate;
     }
     const createTask = () => {
@@ -176,7 +176,7 @@
         font-family: 'Raleway', sans-serif;
         padding: 40px 0;
         min-height: 100vh;
-        background: url(/BG2.jpg) center/cover no-repeat;
+        background-color: #1F2A38;
         &__inner {
             background-color: #32315b;
             display: flex;
