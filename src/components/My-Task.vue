@@ -63,7 +63,7 @@
                     class="task__btn"
                     @click="submitTask"
                 >
-                    <img src="/plus.png" alt="" class="task__btn-img">
+                    <img src="./plus.png" alt="" class="task__btn-img">
                 </button>
             </div>
     </div>

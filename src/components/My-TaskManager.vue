@@ -67,19 +67,19 @@
                         </h3>
 
                         <p class="card__left-desc__time">
-                            <img src="/calendar.png" alt="" class="card__left-desc__time-img">
+                            <img src="./calendar.png" alt="" class="card__left-desc__time-img">
                             <span class="card__left-desc__time-text"> {{ task.date }}</span>
                         </p>
                     </div>
                 </div>
                 <div class="card__right" v-if="!task.isEditing">
                     <myBtn
-                        imgName="/edit.png" 
+                        imgName="./edit.png" 
                         myClass="edit"
                         @click="editTask(index)"
                     />
                     <myBtn
-                        imgName="/trash.png" 
+                        imgName="./trash.png" 
                         myClass="delete"
                         @click="removeTask(index)"
                     />
@@ -95,12 +95,12 @@
                         >
                         
                     <myBtn
-                        imgName="/save.png" 
+                        imgName="./save.png" 
                         myClass="save"
                         @click="saveTask(index)"
                     />
                     <myBtn
-                        imgName="/cancel.png" 
+                        imgName="./cancel.png" 
                         myClass="cancel"
                         @click="cancelTask(index)"
                     />
